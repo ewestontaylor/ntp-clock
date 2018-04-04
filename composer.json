@@ -1,0 +1,12 @@
+{
+    "name": "ewestontaylor/ntp-clock",
+    "require": {
+        "calcinai/phpi": "^0.3.2"
+    },
+    "license": "mit",
+    "autoload": {
+      "psr-4":{
+        "NTPClock\\": "src"
+      }
+    }
+}
