@@ -46,7 +46,7 @@ class Clock
         $diff = $currentTime->diff($this->physical_time);
         $seconds = $diff->h * 60 * 60 + $diff->i * 60 + $diff->s;
         echo $seconds . "\n";
-        if ($seconds > 0) {
+        if ($seconds > 0 && $seconds < 20000) {
             $this->tick();
         }
     }
