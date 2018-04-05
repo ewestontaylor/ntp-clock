@@ -22,7 +22,11 @@ class Clock
         $this->timezone = $timezone;
         $this->gpio_a->setFunction(PinFunction::OUTPUT);
         $this->gpio_b->setFunction(PinFunction::OUTPUT);
-        $this->cache_filename = preg_replace('/[^\w]+/', '-', strtolower($this->timezone->getName()));
+
+        $tz_name = preg_replace('/[^\w]+/', '-', strtolower($this->timezone->getName()));
+
+        $this->cache_filename = sprintf('%s-%s', $gpio_a->getPinNumber(), $tz_name);
+
         $this->physical_time = $this->getPhysicalTime();
     }
     public function getPhysicalTime()
