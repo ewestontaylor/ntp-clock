@@ -12,6 +12,7 @@ $clock = new \NTPClock\Clock(
   new DateTimeZone('Pacific/Auckland')
 );
 
-$loop->addPeriodicTimer(1, [$clock,'tick']);
+$loop->addPeriodicTimer(0.1, [$clock,'autotick'
+]);
 
 $loop->run();
