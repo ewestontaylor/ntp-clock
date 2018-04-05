@@ -33,6 +33,7 @@ class Clock
         }
         //Read the file from disk
         $time = file_get_contents($this->cache_filename);
+        $time = $time.rtrim();
         return \DateTime::createFromFormat('H:i:s', $time, $this->timezone);
     }
     public function persistPhysicalTime()
