@@ -33,12 +33,12 @@ class Clock
         }
         //Read the file from disk
         $time = file_get_contents($this->cache_filename);
-        return \DateTime::createFromFormat('hh:i:s', $time, $this->timezone);
+        return \DateTime::createFromFormat('H:i:s', $time, $this->timezone);
     }
     public function persistPhysicalTime()
     {
         //Cache the time
-        file_put_contents($this->cache_filename, $this->physical_time->format('hh:i:s'));
+        file_put_contents($this->cache_filename, $this->physical_time->format('H:i:s'));
     }
     public function autoTick()
     {
