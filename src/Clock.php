@@ -43,6 +43,7 @@ class Clock
     public function autoTick()
     {
         $currentTime = new \DateTime('now', $this->timezone);
+        echo $this->physical_time . "\n";
         $diff = $currentTime->diff($this->physical_time);
         $seconds = $diff->h * 60 * 60 + $diff->i * 60 + $diff->s;
         echo $seconds . "\n";
