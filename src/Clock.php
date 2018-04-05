@@ -45,6 +45,7 @@ class Clock
         $currentTime = new \DateTime('now', $this->timezone);
         $diff = $currentTime->diff($this->physical_time);
         $seconds = $diff->h * 60 * 60 + $diff->i * 60 + $diff->s;
+        echo $seconds . "\n";
         if ($seconds > 0) {
             $this->tick();
         }
