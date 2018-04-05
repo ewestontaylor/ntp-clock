@@ -37,6 +37,8 @@ class Clock
 
     $gpio->high();
     $this->loop->addTimer(0.1, [$gpio, 'low']);
-
-  }
+$time = file_get_contents("time")
+echo $time;
+file_put_contents ("time","hello")
+}
 }
