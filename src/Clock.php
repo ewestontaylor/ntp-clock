@@ -33,7 +33,6 @@ class Clock
         }
         //Read the file from disk
         $time = file_get_contents($this->cache_filename);
-        $time = $time.rtrim();
         return \DateTime::createFromFormat('H:i:s', $time, $this->timezone);
     }
     public function persistPhysicalTime()
@@ -47,7 +46,8 @@ class Clock
         $diff = $currentTime->diff($this->physical_time);
         $seconds = $diff->h * 60 * 60 + $diff->i * 60 + $diff->s;
         echo $seconds . "\n";
-        if ($seconds > 0 && $seconds < 20000) {
+        $seconds = $seconds %43200;
+        if ($seconds > 0) {
             $this->tick();
         }
     }
