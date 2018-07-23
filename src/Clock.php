@@ -15,6 +15,8 @@ class Clock
     private $cache_filename;
     private $physical_time;
 
+    private $even;
+
     /**
      * Clock constructor.
      *
@@ -30,6 +32,8 @@ class Clock
         $this->gpio_a = $gpio_a;
         $this->gpio_b = $gpio_b;
         $this->timezone = $timezone;
+
+        $this->even = false;
 
         $this->gpio_a->setFunction(PinFunction::OUTPUT);
         $this->gpio_b->setFunction(PinFunction::OUTPUT);
@@ -84,11 +88,10 @@ class Clock
     private function tick()
     {
         //maintaining odd/even tick
-        static $even = false;
-        $gpio = $even ? $this->gpio_a : $this->gpio_b;
+        $gpio = $this->even ? $this->gpio_a : $this->gpio_b;
 
         //Toggle flag
-        $even = !$even;
+        $this->even = !$this->even;
 
         $gpio->high();
         $this->loop->addTimer(0.1, [$gpio, 'low']);
